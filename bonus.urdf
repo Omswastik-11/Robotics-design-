@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<robot name="excavator" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="9 12 2.7"/>
+      </geometry>
+      <material name="yellow">
+        <color rgba="1 1 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Rotator Link -->
+  <link name="link_rotator">
+    <visual>
+      <geometry>
+        <cylinder radius="1.66" length="1.33"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint between base_link and link_rotator -->
+  <joint name="base_to_link_rotator" type="revolute">
+    <parent link="base_link"/>
+    <child link="link_rotator"/>
+    <origin xyz="0 0 1"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="-3.14" upper="3.14" velocity="1.0"/>
+  </joint>
+
+  <!-- Upper Arm Link -->
+  <link name="upper_arm">
+    <visual>
+      <geometry>
+        <cylinder radius="0.88" length="12"/>
+      </geometry>
+      <material name="yellow">
+        <color rgba="1 1 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint between link_rotator and upper_arm -->
+  <joint name="rotator_to_upper_arm" type="revolute">
+    <parent link="link_rotator"/>
+    <child link="upper_arm"/>
+    <origin xyz="-2.48 0 3" rpy="0 -0.75 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000" lower="-1.57" upper="1.57" velocity="1.0"/>
+  </joint>
+
+   <!-- Top Arm Link -->
+  <link name="top_arm">
+    <visual>
+      <geometry>
+        <cylinder radius="0.75" length="6"/>
+      </geometry>
+      <material name="yellow">
+        <color rgba="1 1 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint between upper_arm and top_arm -->
+  <joint name="upper_to_top_arm" type="revolute">
+    <parent link="upper_arm"/>
+    <child link="top_arm"/>
+    <origin xyz="-3.0 0 5.75" rpy="0 1.51 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000" lower="-1.57" upper="1.57" velocity="1.0"/>
+  </joint>
+
+  <!-- Bucket Link -->
+  <link name="bucket_link">
+    <visual>
+      <geometry>
+        <box size="3.2 3.2 2"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint between top_arm and bucket -->
+  <joint name="top_to_bucket" type="revolute">
+    <parent link="top_arm"/>
+    <child link="bucket_link"/>
+    <origin xyz="2 0 -3" rpy = " 0 -1.51 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000" lower="-1.57" upper="1.57" velocity="1.0"/>
+  </joint>
+
+  <!-- Pacer1 Link -->
+  <link name="pacer1">
+    <visual>
+      <geometry>
+        <cylinder radius="1.25" length="3.2"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint between base_link and pacer1 -->
+  <joint name="base_to_pacer1" type="prismatic">
+    <parent link="base_link"/>
+    <child link="pacer1"/>
+    <origin xyz="3.5 5 -2" rpy="0 1.57 1.57"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="0" upper="5" velocity="1.0"/>
+  </joint>
+
+  <!-- Pacer2 Link -->
+  <link name="pacer2">
+    <visual>
+      <geometry>
+        <cylinder radius="1.25" length="3.2"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+   <!-- Pacer3 Link -->
+  <link name="pacer3">
+    <visual>
+      <geometry>
+        <cylinder radius="1.25" length="3.2"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+   <!-- Pacer4 Link -->
+  <link name="pacer4">
+    <visual>
+      <geometry>
+        <cylinder radius="1.25" length="3.2"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+    <!-- Pacer5 Link -->
+  <link name="pacer5">
+    <visual>
+      <geometry>
+        <cylinder radius="1.25" length="3.2"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+     <!-- Pacer6 Link -->
+  <link name="pacer6">
+    <visual>
+      <geometry>
+        <cylinder radius="1.25" length="3.2"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+  <!-- Joint between base_link and pacer2 -->
+  <joint name="base_to_pacer2" type="prismatic">
+    <parent link="base_link"/>
+    <child link="pacer2"/>
+    <origin xyz="-3.5 5 -2" rpy="0 1.57 1.57"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="0" upper="5" velocity="1.0"/>
+  </joint>
+ <!-- Joint between base_link and pacer2 -->
+  <joint name="base_to_pacer3" type="prismatic">
+    <parent link="base_link"/>
+    <child link="pacer3"/>
+    <origin xyz="3.5 0 -2" rpy="0 1.57 1.57"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="0" upper="5" velocity="1.0"/>
+  </joint>
+   <!-- Joint between base_link and pacer4 -->
+  <joint name="base_to_pacer4" type="prismatic">
+    <parent link="base_link"/>
+    <child link="pacer4"/>
+    <origin xyz="-3.5 0 -2" rpy="0 1.57 1.57"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="0" upper="5" velocity="1.0"/>
+  </joint>
+    <!-- Joint between base_link and pacer2 -->
+  <joint name="base_to_pacer5" type="prismatic">
+    <parent link="base_link"/>
+    <child link="pacer5"/>
+    <origin xyz="3.5 -5 -2" rpy="0 1.57 1.57"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="0" upper="5" velocity="1.0"/>
+  </joint>
+    <!-- Joint between base_link and pacer6 -->
+  <joint name="base_to_pacer6" type="prismatic">
+    <parent link="base_link"/>
+    <child link="pacer6"/>
+    <origin xyz="-3.5 -5 -2" rpy="0 1.57 1.57"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="0" upper="5" velocity="1.0"/>
+  </joint>
+</robot>
